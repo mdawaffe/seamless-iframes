@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8" />
+<style>
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color: transparent;
+}
+</style>
+</head>
+<body>
+<div class="inner">
+<h1>IFRAME</h1>
+<p>Hello, <a href="http://example.com">there</a>.</p>
+<p id="something">Background</p>
+<div class="foo">
+	<p>Green?</p>
+</div>
+</div>
+</body>
+<script>
+window.addEventListener( 'message', receiveMessage, false );
+function receiveMessage( event ) {
+	var style = document.createElement( 'style' );
+	var styles = document.getElementsByTagName( 'style' );
+
+	style.innerHTML = event.data;
+	if ( styles.length ) {
+		styles[0].parentNode.insertBefore( style, styles[0] );
+	} else {
+		document.head.appendChild( style );
+	}
+}
+</script>
+</html>
